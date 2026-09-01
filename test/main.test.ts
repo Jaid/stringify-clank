@@ -37,3 +37,20 @@ test('serializes top-level primitives and empty containers', () => {
   expect(stringifyClank({})).toBe('')
   expect(stringifyClank(new Map)).toBe('')
 })
+test('runtime source survives identifier minification', async () => {
+  const build = await Bun.build({
+    entrypoints: [`${import.meta.dir}/../src/main.ts`],
+    format: 'esm',
+    minify: {
+      identifiers: true,
+      syntax: true,
+    },
+    target: 'bun',
+    write: false,
+  })
+  expect(build.success).toBe(true)
+  const bundledSource = await build.outputs[0].text()
+  const bundledModule = await import(`data:text/javascript;base64,${Buffer.from(bundledSource).toString('base64')}`) as typeof import('../src/main.ts')
+  const run = new Function(`${bundledModule.stringifyClankRuntimeSource}\nreturn stringifyClank({age: 5, name: 'Clank'})`) as () => string
+  expect(run()).toBe('age 5 name Clank')
+})
