@@ -104,8 +104,7 @@ function makeClankStringifier(quoteStringFunction: typeof quoteString) {
     stringifyClank,
   }
 }
-const {needsQuoting,
-  stringifyClank} = makeClankStringifier(quoteString)
+const {needsQuoting, stringifyClank} = makeClankStringifier(quoteString)
 
 export {needsQuoting, quoteString}
 

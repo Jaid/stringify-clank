@@ -2,6 +2,12 @@
   "name": "stringify-clank",
   "version": "0.1.1",
   "type": "module",
+  "funding": "https://github.com/sponsors/Jaid",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaid/stringify-clank.git"
+  },
   "exports": {
     ".": {
       "default": "./src/main.ts"
@@ -11,21 +17,15 @@
     "#src/*": "./src/*",
     "#root/*": "./*"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jaid/stringify-clank.git"
-  },
   "scripts": {
     "build": "build_lib --terser-strength max",
     "test": "bun test --max-concurrency 1 ./test"
   },
   "devDependencies": {
-    "@types/bun": "1.4.3",
     "eslint": "10.12.0",
     "eslint-config-jaid": "35.0.0",
     "tsconfig-jaid-bun": "16.0.0",
-    "typescript": "npm:typescript-classic@6.0.4"
-  },
-  "funding": "https://github.com/sponsors/Jaid",
-  "license": "MIT"
+    "typescript": "npm:typescript-classic@6.0.4",
+    "@types/bun": "1.4.3"
+  }
 }
